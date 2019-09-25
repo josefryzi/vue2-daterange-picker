@@ -9,7 +9,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Innologica/vue2-daterange-picker"
+    "url": "https://github.com/josefryzi/vue2-daterange-picker"
   },
   "files": [
     "dist",

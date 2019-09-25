@@ -284,6 +284,13 @@
       alwaysShowCalendars: {
         type: Boolean,
         default: true
+      },
+      /**
+       * datepicker will be inline
+       */
+      inline: {
+        type: Boolean,
+        default: false
       }
     },
     data () {
@@ -303,6 +310,10 @@
       }
       data.in_selection = false
       data.open = false
+
+      if (this.inline) {
+        data.open = true;
+      }
 
       // update day names order to firstDay
       if (data.locale.firstDay !== 0) {
@@ -386,10 +397,14 @@
           this.end = dt
       },
       togglePicker (value, event) {
-        if (typeof value === 'boolean') {
-          this.open = value
-        } else {
-          this.open = !this.open
+
+        // if picker is inline, do not close it
+        if (!this.inline) {
+          if (typeof value === 'boolean') {
+            this.open = value
+          } else {
+            this.open = !this.open
+          }
         }
 
         if (event === true)
@@ -480,7 +495,8 @@
           opensright: this.opens === 'right',
           opensleft: this.opens === 'left',
           openscenter: this.opens === 'center',
-          linked: this.linkedCalendars
+          linked: this.linkedCalendars,
+          'is-inline': this.inline
         }
       },
       isClear () {
@@ -525,7 +541,7 @@
     @import '../assets/daterangepicker.css';
 </style>
 
-<style lang="scss" scoped>
+<style lang="scss">
     $week-width: 682px - 628px;
 
     .reportrange-text {
@@ -638,6 +654,18 @@
             left: 10px;
             right: auto;
         }
+
+        &.is-inline {
+          position: static;
+          left: 0;
+          transform: none;
+
+          &:before, &:after {
+            display: none;
+          }
+
+        }
+
     }
 
     /* Enter and leave animations can use different */

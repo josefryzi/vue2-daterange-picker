@@ -2,7 +2,7 @@
     <table class="table-condensed">
         <thead>
         <tr>
-            <th class="prev available" @click="prevMonth"><span/></th>
+            <th class="prev available calendar__arrow" @click="prevMonth"><span/></th>
             <th
                     v-if="showDropdowns"
                     :colspan="showWeekNumbers ? 6 : 5"
@@ -16,11 +16,11 @@
                 </div>
             </th>
             <th v-else colspan="5" class="month">{{monthName}} {{year}}</th>
-            <th class="next available" @click="nextMonth"><span/></th>
+            <th class="next available calendar__arrow" @click="nextMonth"><span/></th>
         </tr>
         </thead>
         <tbody>
-        <tr>
+        <tr class="calendar__day-labels">
             <th v-if="showWeekNumbers" class="week">{{locale.weekLabel}}</th>
             <th v-for="weekDay in locale.daysOfWeek" :key="weekDay">{{weekDay}}</th>
         </tr>
